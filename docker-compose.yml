@@ -1,0 +1,36 @@
+version: '2'
+
+services:
+
+### MySQL Container #########################################
+
+    mysql:
+      build:
+        context: ./mysql
+        args:
+          - MYSQL_DATABASE=weibo
+          - MYSQL_USER=root
+          - MYSQL_PASSWORD=secret
+          - MYSQL_ROOT_PASSWORD=secret
+      volumes:
+        - ./dockerdata/mysql:/var/lib/mysql
+      ports:
+        - "3306:3306"
+
+### Redis Container #########################################
+
+    redis:
+        build:
+          context: ./redis
+        volumes:
+            - ./dockerdata/redis:/data
+        ports:
+            - "6379:6379"
+
+### Volumes Setup ###########################################
+
+volumes:
+  mysql:
+    driver: "local"
+  redis:
+    driver: "local"

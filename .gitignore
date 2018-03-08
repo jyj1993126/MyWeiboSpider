@@ -1,0 +1,4 @@
+.idea
+/dockerdata
+*.pyc
+.DS_Store
